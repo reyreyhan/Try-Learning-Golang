@@ -50,5 +50,13 @@ func main() {
 		return ctx.String(http.StatusOK, data)
 	})
 
+	route.GET("query-path-param/:name/*", func(ctx echo.Context) error {
+		name := ctx.Param("name")
+		message := ctx.Param("*")
+		data := fmt.Sprintf("Hello %s, I have message for you: %s", name, message)
+
+		return ctx.String(http.StatusOK, data)
+	})
+
 	route.Start(":8080")
 }
