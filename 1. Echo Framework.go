@@ -19,5 +19,9 @@ func main() {
 		return ctx.HTML(http.StatusOK, data)
 	})
 
+	route.GET("/redirect", func(ctx echo.Context) error {
+		return ctx.Redirect(http.StatusTemporaryRedirect, "/")
+	})
+
 	route.Start(":8080")
 }
