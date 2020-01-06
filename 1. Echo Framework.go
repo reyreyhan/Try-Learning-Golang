@@ -58,5 +58,18 @@ func main() {
 		return ctx.String(http.StatusOK, data)
 	})
 
+	route.POST("/data-parse", func(ctx echo.Context) error {
+		name := ctx.FormValue("name")
+		message := ctx.FormValue("message")
+
+		data := fmt.Sprintf(
+			"Hello %s, I have message for you: %s",
+			name,
+			message,
+		)
+
+		return ctx.String(http.StatusOK, data)
+	})
+
 	route.Start(":8080")
 }
