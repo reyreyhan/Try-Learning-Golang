@@ -43,5 +43,12 @@ func main() {
 		return ctx.String(http.StatusOK, data)
 	})
 
+	route.GET("/query-url/:name", func(ctx echo.Context) error {
+		name := ctx.Param("name")
+		data := fmt.Sprintf("You are using Query Url! ") + fmt.Sprintf(" Hello %s", name) + fmt.Sprintf("! How Are You ?")
+
+		return ctx.String(http.StatusOK, data)
+	})
+
 	route.Start(":8080")
 }
