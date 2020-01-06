@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -33,6 +34,13 @@ func main() {
 		}
 
 		return ctx.JSON(http.StatusOK, data)
+	})
+
+	route.GET("/query", func(ctx echo.Context) error {
+		name := ctx.QueryParam("name")
+		data := fmt.Sprintf("Hello %s", name) + fmt.Sprintf("! How Are You ?")
+
+		return ctx.String(http.StatusOK, data)
 	})
 
 	route.Start(":8080")
