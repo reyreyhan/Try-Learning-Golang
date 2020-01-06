@@ -14,5 +14,10 @@ func main() {
 		return ctx.String(http.StatusOK, data)
 	})
 
+	route.GET("/html", func(ctx echo.Context) error {
+		data := "Hello /html"
+		return ctx.HTML(http.StatusOK, data)
+	})
+
 	route.Start(":8080")
 }
