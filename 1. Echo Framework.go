@@ -6,6 +6,8 @@ import (
 	"github.com/labstack/echo"
 )
 
+type M map[string]interface{}
+
 func main() {
 	route := echo.New()
 
@@ -21,6 +23,16 @@ func main() {
 
 	route.GET("/redirect", func(ctx echo.Context) error {
 		return ctx.Redirect(http.StatusTemporaryRedirect, "/")
+	})
+
+	route.GET("/json", func(ctx echo.Context) error {
+		data := M{
+			"Name": "Reyhan Alphard Savero",
+			"Type": "Json",
+			"Job":  "Backend Engineer",
+		}
+
+		return ctx.JSON(http.StatusOK, data)
 	})
 
 	route.Start(":8080")
